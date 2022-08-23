@@ -1,15 +1,45 @@
 import { ProductItem } from 'components';
+import { useEffect, useState } from 'react';
+import { api } from 'services/api';
+
+import * as S from './styles';
+
 export const Home = () => {
+  const [products, setProducts] = useState([]);
+
+  useEffect(() => {
+    api.get('/models').then((el) => {
+      setProducts(el.data.models);
+    });
+  }, []);
+
   return (
-    <div>
+    <S.Container>
       Welcome to our shop!
-      <p>
-        You are probably interested in <a href='/products/a'>A</a>.
-        <ProductItem />
-      </p>
-      <p>
-        Check out the newest product <a href='/products/b'>B</a>!
-      </p>
-    </div>
+      <h1>You are probably interested in:</h1>
+      <div className='products'>
+        {products.map((product) => (
+          <ProductItem
+            image={product.image}
+            title={product.title}
+            description={product.description}
+            price={product.price}
+            key={product.id}
+          />
+        ))}
+      </div>
+      <h1>Check out the newest product!</h1>
+      <div className='products'>
+        {products.reverse().map((product) => (
+          <ProductItem
+            image={product.image}
+            title={product.title}
+            description={product.description}
+            price={product.price}
+            key={product.id}
+          />
+        ))}
+      </div>
+    </S.Container>
   );
 };

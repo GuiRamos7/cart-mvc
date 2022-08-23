@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-  margin: 50px 0;
   box-shadow: 0 0 5px 0px #e2e2e2;
   padding: 18px;
   box-sizing: border-box;
@@ -24,6 +23,7 @@ export const Title = styled.h2`
 export const Description = styled.p`
   color: #8b8b8b;
   font-size: 13px;
+  height: 70px;
 `;
 
 export const Price = styled.p`

@@ -1,17 +1,16 @@
-import pictureB from '../../b.jpg';
 import * as S from './styles';
 
 import { Button } from '../Button';
 
 export const ProductItem = ({
   title = 'Alien',
-  image,
+  image = '',
   price = 500,
   description = 'This is fully detailed statue of an Alien creature.',
 }) => {
   return (
     <S.Container>
-      <img src={pictureB} />
+      <img src={image} />
       <S.Title>{title}</S.Title>
       <S.Description>{description}</S.Description>
       <S.Price>${price}</S.Price>
