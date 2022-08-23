@@ -1,8 +1,6 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Home, ProductPage } from './pages';
-
-import pictureA from './a.jpg';
-import pictureB from './b.jpg';
+import { Header } from 'components';
 
 function cartItems() {
   return [];
@@ -84,6 +82,7 @@ function cartItems() {
 function App() {
   return (
     <BrowserRouter>
+      <Header />
       <Routes>
         <Route index path='/' element={<Home />} />
         <Route path='/products/:id' element={<ProductPage />} />

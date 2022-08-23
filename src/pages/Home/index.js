@@ -15,7 +15,7 @@ export const Home = () => {
 
   return (
     <S.Container>
-      Welcome to our shop!
+      <h1>Welcome to our shop!</h1>
       <h1>You are probably interested in:</h1>
       <div className='products'>
         {products.map((product) => (
