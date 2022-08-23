@@ -25,6 +25,7 @@ export const Home = () => {
             description={product.description}
             price={product.price}
             key={product.id}
+            id={product.id}
           />
         ))}
       </div>
@@ -37,6 +38,7 @@ export const Home = () => {
             description={product.description}
             price={product.price}
             key={product.id}
+            id={product.id}
           />
         ))}
       </div>

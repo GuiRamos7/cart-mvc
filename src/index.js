@@ -49,6 +49,12 @@ createServer({
     this.get('/models', () => {
       return this.schema.all('models');
     });
+
+    this.get('/models/:id', (schema, request) => {
+      let id = request.params.id;
+
+      return schema.models.find(id);
+    });
   },
 });
 
