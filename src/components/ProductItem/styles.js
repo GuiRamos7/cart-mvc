@@ -29,5 +29,5 @@ export const Description = styled.p`
 export const Price = styled.p`
   font-size: 14px;
   font-weight: bold;
-  margin: 2px 0 0;
+  margin: 2px 0 15px;
 `;
