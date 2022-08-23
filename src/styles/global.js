@@ -10,10 +10,9 @@ export const Global = createGlobalStyle`
   body {
     -webkit-font-smoothing: antialiased;
     font-family: 'Poppins', sans-serif;
-
   }
-  body, input, button {
-    font: 14px Roboto, sans-serif;
+  input, button {
+    font-family: 'Poppins', sans-serif;
   }
   #root {
     max-width: 1020px;
