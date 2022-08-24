@@ -1,10 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { createServer, Model } from 'miragejs';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { Global } from './styles/global';
+import { CartProvider } from 'hooks/useCart';
 
-import { createServer, Model } from 'miragejs';
 // Creating a fake API to get items
 createServer({
   models: {
@@ -61,8 +62,10 @@ createServer({
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <Global />
-    <App />
+    <CartProvider>
+      <Global />
+      <App />
+    </CartProvider>
   </React.StrictMode>
 );
 
