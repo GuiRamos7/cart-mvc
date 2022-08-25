@@ -6,6 +6,7 @@ export const Container = styled.div`
   box-sizing: border-box;
   width: 255px;
   border-radius: 24px;
+
   img {
     width: 100%;
     height: 220px;

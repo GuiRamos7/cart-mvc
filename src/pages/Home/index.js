@@ -6,10 +6,12 @@ import * as S from './styles';
 
 export const Home = () => {
   const [products, setProducts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     api.get('/models').then((el) => {
       setProducts(el.data.models);
+      setIsLoading(false);
     });
   }, []);
 
@@ -18,6 +20,9 @@ export const Home = () => {
       <h1>Welcome to our shop!</h1>
       <h1>You are probably interested in:</h1>
       <div className='products'>
+        {isLoading &&
+          Array.from(Array(3).keys()).map(() => <ProductItem isLoading />)}
+
         {products.map((product) => (
           <ProductItem
             image={product.image}
@@ -31,6 +36,8 @@ export const Home = () => {
       </div>
       <h1>Check out the newest product!</h1>
       <div className='products'>
+        {isLoading &&
+          Array.from(Array(3).keys()).map(() => <ProductItem isLoading />)}
         {products.reverse().map((product) => (
           <ProductItem
             image={product.image}
