@@ -6,6 +6,7 @@ import { Button } from 'components';
 import { api } from 'services/api';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from 'hooks/useCart';
+import { moneyFormatter } from 'utils/moneyFormatter';
 
 import * as S from './styles';
 
@@ -57,7 +58,7 @@ export const ProductPage = () => {
       <S.Details>
         <h1>{product.title}</h1>
         <span>{product.description}</span>
-        <h2> {product.price} USD</h2>
+        <h2>{moneyFormatter(product.price)}</h2>
         <Button onClick={() => handleAddCart()}>Add to cart</Button>
       </S.Details>
     </S.Container>

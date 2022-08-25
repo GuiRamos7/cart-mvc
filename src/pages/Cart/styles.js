@@ -59,6 +59,31 @@ export const ProductItem = styled.div`
       color: #ff6455;
     }
   }
+
+  @media (max-width: 500px) {
+    .infos {
+      h1 {
+        font-size: 0.8rem;
+      }
+    }
+
+    .shop-infos {
+      p {
+        font-size: 1rem;
+        font-weight: bold;
+      }
+
+      .update {
+        span {
+          font-size: 0.6rem;
+        }
+      }
+
+      .remove {
+        font-size: 0.8rem;
+      }
+    }
+  }
 `;
 
 export const CheckoutBox = styled.div`
