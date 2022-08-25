@@ -6,6 +6,14 @@ import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
 export const Cart = () => {
   const { cart, updateProductAmount, removeProduct } = useCart();
 
+  const calculateAmount = () => {
+    const total = cart.reduce((acc, el) => {
+      return acc + el.amount * el.price;
+    }, 0);
+
+    return total;
+  };
+
   return (
     <S.Container>
       {cart.map((el) => (
@@ -37,6 +45,11 @@ export const Cart = () => {
           </div>
         </S.ProductItem>
       ))}
+
+      <S.CheckoutBox>
+        <h1>Total: </h1>
+        <span>${calculateAmount()}</span>
+      </S.CheckoutBox>
     </S.Container>
   );
 };

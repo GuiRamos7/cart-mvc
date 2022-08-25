@@ -57,3 +57,18 @@ export const ProductItem = styled.div`
     }
   }
 `;
+
+export const CheckoutBox = styled.div`
+  margin: 30px 0 0;
+  border-radius: 25px;
+  padding: 15px;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  display: flex;
+
+  span {
+    font-size: 2rem;
+    font-weight: 600;
+  }
+`;
