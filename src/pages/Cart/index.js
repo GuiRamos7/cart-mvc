@@ -2,7 +2,7 @@ import { useCart } from 'hooks/useCart';
 import * as S from './styles';
 import { BsTrashFill } from 'react-icons/bs';
 import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
-
+import { moneyFormatter } from 'utils/moneyFormatter';
 import { Button } from 'components';
 
 export const Cart = () => {
@@ -13,12 +13,7 @@ export const Cart = () => {
       return acc + el.amount * el.price;
     }, 0);
 
-    total = total.toLocaleString('en-US', {
-      style: 'currency',
-      currency: 'USD',
-    });
-
-    return total;
+    return moneyFormatter(total);
   };
 
   return (
@@ -33,12 +28,7 @@ export const Cart = () => {
           </div>
 
           <div className='shop-infos'>
-            <p>
-              {el.price.toLocaleString('en-US', {
-                style: 'currency',
-                currency: 'USD',
-              })}
-            </p>
+            <p>{moneyFormatter(el.price)}</p>
             <div className='update'>
               <IoMdArrowDropleft
                 onClick={() => updateProductAmount(el.id, el.amount - 1)}
