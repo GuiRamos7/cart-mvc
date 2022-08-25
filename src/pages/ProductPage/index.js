@@ -1,28 +1,48 @@
 import { useEffect, useState } from 'react';
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
+
+import { Button } from 'components';
 import { api } from 'services/api';
 import { useLocation } from 'react-router-dom';
 import { useCart } from 'hooks/useCart';
+
 import * as S from './styles';
-import { Button } from 'components';
 
 export const ProductPage = () => {
   const { addProduct } = useCart();
   const { pathname } = useLocation();
   const [product, setProduct] = useState();
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const id = pathname.split('/')[2];
-    api.get(`/models/${id}`).then((el) => {
-      const {
-        data: { models },
-      } = el;
+    api
+      .get(`/models/${id}`)
+      .then((el) => {
+        const {
+          data: { models },
+        } = el;
 
-      setProduct(models);
-    });
+        setProduct(models);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
   }, []);
 
-  if (!product) {
-    return 'loading';
+  if (isLoading) {
+    return (
+      <S.LoadingContainer>
+        <Skeleton height={400} />
+        <div>
+          <Skeleton height={45} />
+          <Skeleton height={15} />
+          <Skeleton height={15} />
+          <Skeleton height={45} />
+        </div>
+      </S.LoadingContainer>
+    );
   }
 
   return (
@@ -34,12 +54,6 @@ export const ProductPage = () => {
         <h2> {product.price} USD</h2>
         <Button onClick={() => addProduct(product.id)}>Add to cart</Button>
       </S.Details>
-      {/* 
-      <p>Price: {product.price} USD</p>
-      <button onClick={() => console.warn('Not implemented!')}>
-        Add to cart
-      </button>
-      <div><img src={pictureB} width={640} /></div> */}
     </S.Container>
   );
 };

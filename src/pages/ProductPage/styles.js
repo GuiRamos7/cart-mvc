@@ -6,6 +6,23 @@ export const Container = styled.div`
   width: 100%;
 `;
 
+export const LoadingContainer = styled.div`
+  padding: 25px 0 0;
+  display: grid;
+  grid-template-columns: 65% 33%;
+  gap: 2%;
+  width: 100%;
+  box-sizing: border-box;
+
+  & > div {
+    display: flex;
+    flex-direction: column;
+  }
+  span:last-child {
+    margin-top: auto;
+  }
+`;
+
 export const Image = styled.img`
   width: 65vw;
   height: 50vh;
@@ -17,6 +34,10 @@ export const Image = styled.img`
 export const Details = styled.div`
   display: flex;
   flex-direction: column;
+
+  span {
+    width: 100%;
+  }
   span {
     color: #8b8b8b;
   }
