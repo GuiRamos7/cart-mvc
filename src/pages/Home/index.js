@@ -1,12 +1,14 @@
 import { ProductItem } from 'components';
 import { useEffect, useState } from 'react';
 import { api } from 'services/api';
+import { useNavigate } from 'react-router-dom';
 
 import * as S from './styles';
 
 export const Home = () => {
   const [products, setProducts] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const history = useNavigate();
 
   useEffect(() => {
     api.get('/models').then((el) => {
@@ -31,6 +33,7 @@ export const Home = () => {
             price={product.price}
             key={product.id}
             id={product.id}
+            onClick={() => history(`/products/${product.id}`)}
           />
         ))}
       </div>
@@ -46,6 +49,7 @@ export const Home = () => {
             price={product.price}
             key={product.id}
             id={product.id}
+            onClick={() => history(`/products/${product.id}`)}
           />
         ))}
       </div>
