@@ -3,13 +3,20 @@ import * as S from './styles';
 import { BsTrashFill } from 'react-icons/bs';
 import { IoMdArrowDropleft, IoMdArrowDropright } from 'react-icons/io';
 
+import { Button } from 'components';
+
 export const Cart = () => {
   const { cart, updateProductAmount, removeProduct } = useCart();
 
   const calculateAmount = () => {
-    const total = cart.reduce((acc, el) => {
+    let total = cart.reduce((acc, el) => {
       return acc + el.amount * el.price;
     }, 0);
+
+    total = total.toLocaleString('en-US', {
+      style: 'currency',
+      currency: 'USD',
+    });
 
     return total;
   };
@@ -26,7 +33,12 @@ export const Cart = () => {
           </div>
 
           <div className='shop-infos'>
-            <p>${el.price}</p>
+            <p>
+              {el.price.toLocaleString('en-US', {
+                style: 'currency',
+                currency: 'USD',
+              })}
+            </p>
             <div className='update'>
               <IoMdArrowDropleft
                 onClick={() => updateProductAmount(el.id, el.amount - 1)}
@@ -48,8 +60,10 @@ export const Cart = () => {
 
       <S.CheckoutBox>
         <h1>Total: </h1>
-        <span>${calculateAmount()}</span>
+        <span>{calculateAmount()}</span>
       </S.CheckoutBox>
+
+      <Button>Place order</Button>
     </S.Container>
   );
 };
