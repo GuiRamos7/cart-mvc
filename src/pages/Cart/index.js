@@ -18,7 +18,7 @@ export const Cart = () => {
 
   return (
     <S.Container>
-      {cart.map((el) => (
+      {cart?.map((el) => (
         <S.ProductItem>
           <img src={el.image} />
 

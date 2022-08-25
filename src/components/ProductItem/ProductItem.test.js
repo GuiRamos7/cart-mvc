@@ -1,7 +1,7 @@
 import { render, fireEvent, screen } from '@testing-library/react';
 import { ProductItem } from '.';
 
-describe('Test button component', () => {
+describe('Test ProductItem component', () => {
   it('Should render texts', () => {
     render(
       <ProductItem
