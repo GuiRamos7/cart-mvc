@@ -4,7 +4,7 @@ import 'react-loading-skeleton/dist/skeleton.css';
 
 import { Button } from 'components';
 import { api } from 'services/api';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useCart } from 'hooks/useCart';
 
 import * as S from './styles';
@@ -12,6 +12,7 @@ import * as S from './styles';
 export const ProductPage = () => {
   const { addProduct } = useCart();
   const { pathname } = useLocation();
+  const history = useNavigate();
   const [product, setProduct] = useState();
   const [isLoading, setIsLoading] = useState(true);
 
@@ -30,6 +31,11 @@ export const ProductPage = () => {
         setIsLoading(false);
       });
   }, []);
+
+  const handleAddCart = () => {
+    addProduct(product.id);
+    history('/cart');
+  };
 
   if (isLoading) {
     return (
@@ -52,7 +58,7 @@ export const ProductPage = () => {
         <h1>{product.title}</h1>
         <span>{product.description}</span>
         <h2> {product.price} USD</h2>
-        <Button onClick={() => addProduct(product.id)}>Add to cart</Button>
+        <Button onClick={() => handleAddCart()}>Add to cart</Button>
       </S.Details>
     </S.Container>
   );

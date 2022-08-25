@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import { Home, ProductPage } from './pages';
+import { Cart, Home, ProductPage } from './pages';
 import { Header } from 'components';
 
 function cartItems() {
@@ -86,6 +86,7 @@ function App() {
       <Routes>
         <Route index path='/' element={<Home />} />
         <Route path='/products/:id' element={<ProductPage />} />
+        <Route path='/cart' element={<Cart />} />
       </Routes>
     </BrowserRouter>
   );

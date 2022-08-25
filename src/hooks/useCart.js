@@ -1,4 +1,4 @@
-import { createContext, useState, useContext } from 'react';
+import { createContext, useState, useContext, useEffect } from 'react';
 import { api } from 'services/api';
 
 export const CartContext = createContext({});
@@ -38,6 +38,7 @@ export function CartProvider({ children }) {
 
   const updateProductAmount = async (productId, amount) => {
     if (amount <= 0) {
+      removeProduct(productId);
       return;
     }
 
@@ -51,6 +52,14 @@ export function CartProvider({ children }) {
       localStorage.setItem('@cart', JSON.stringify([...updateCart]));
     }
   };
+
+  useEffect(() => {
+    const dataFromLocalStorage = JSON.parse(localStorage.getItem('@cart'));
+
+    if (dataFromLocalStorage) {
+      setCart(dataFromLocalStorage);
+    }
+  }, []);
 
   return (
     <CartContext.Provider
